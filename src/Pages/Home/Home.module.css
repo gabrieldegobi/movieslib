@@ -23,5 +23,5 @@
 modificados pelo mouse (:hover), o restante do codigo esta no 
 movieCard.jsx*/
 .movies_container:hover div:not(:hover) {
-  opacity: 0.5;
+  opacity: 0.8;
 }

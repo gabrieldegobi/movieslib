@@ -24,7 +24,7 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Melhores Filmes:</h2>
+      <h2 className={styles.title}>Melhores Filmes</h2>
 
       <div className={styles.movies_container}>
         {topMovies.length === 0 && <p>Carregando...</p>}
