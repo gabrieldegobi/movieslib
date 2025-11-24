@@ -1,34 +1,33 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import MovieCard from "../../Components/MovieCard/MovieCard";
 
 import styles from "./Search.module.css";
 import Carregando from "../../Components/Carregando/Carregando";
+import UseFetchSearch from "../../Hooks/UseFetchSearch";
 
 const searchURL = import.meta.env.VITE_SEARCH;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Search = () => {
   const [searchParams] = useSearchParams();
-
-  const [movies, setMovies] = useState([]);
   const query = searchParams.get("q");
+  const { movies } = UseFetchSearch(query);
 
-  const getSearchMovies = async (url) => {
-    const res = await fetch(url);
-
-    const data = await res.json();
-
-    setMovies(data.results);
-  };
-
-  useEffect(() => {
-    const searchWithQueryURL = `${searchURL}?${apiKey}&query=${query}`;
-    console.log(searchWithQueryURL);
-    getSearchMovies(searchWithQueryURL);
-  }, []);
   
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (movies.length === 0) {
+      console.log("oi");
+
+      const timer = setTimeout(() => {
+        navigate("*");
+      }, 1000 * 10);
+
+      return () => clearTimeout(timer);
+    }
+  }, [movies, navigate]);
 
   return (
     <div className={styles.container}>

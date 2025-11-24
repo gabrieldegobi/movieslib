@@ -9,6 +9,7 @@ import App from "../App";
 import Home from "../Pages/Home/Home";
 import Movie from "../Pages/Movie/Movie";
 import Search from "../Pages/Search/Search";
+import NotFound from "../Pages/NotFound/NotFound";
 
 const RoutesApp = () => {
   return (
@@ -18,6 +19,7 @@ const RoutesApp = () => {
           <Route path="/" element={<Home />} />
           <Route path="movie/:id" element={<Movie />} />
           <Route path="search" element={<Search />} />
+          <Route path="*" element={<NotFound/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
